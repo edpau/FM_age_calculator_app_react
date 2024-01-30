@@ -18,7 +18,8 @@ function DateInput({
   handleCal,
 }) {
   const handleSubmit = (e) => {
-    handleCal(e, day, month, year);
+    e.preventDefault();
+    handleCal(day, month, year);
   };
 
   return (
@@ -68,9 +69,9 @@ function AgeCalCard() {
     days: 0,
   });
 
-  const calculateAge = (e, day, month, year) => {
+  const calculateAge = (day, month, year) => {
     // check y e is passed in
-    e.preventDefault();
+    // e.preventDefault();
 
     // Milliseconds in a year 1000*60*60*24*365.25
     const millisecondsPerYear = 31557600000;
