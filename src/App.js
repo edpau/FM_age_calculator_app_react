@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function DisplayAge() {
   return (
@@ -70,8 +70,6 @@ function AgeCalCard() {
   });
 
   const calculateAge = (day, month, year) => {
-    // check y e is passed in
-    // e.preventDefault();
 
     // Milliseconds in a year 1000*60*60*24*365.25
     const millisecondsPerYear = 31557600000;
@@ -101,6 +99,10 @@ function AgeCalCard() {
     setAge({years, months, days})
   
   };
+
+  useEffect(()=>{
+    calculateAge(day, month, year)
+  },[])
  
 
 
@@ -115,7 +117,7 @@ function AgeCalCard() {
         onChangeYear={setYear}
         handleCal={calculateAge}
       />
-      <p>{age.years}years{age.months}years{age.days}days</p>
+      <p>{age.years}years{age.months}months{age.days}days</p>
     </div>
   );
 }
