@@ -24,11 +24,15 @@ function DateInput({
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    let isValidInput = true;
+
     // Validation for day input
     if (!day) {
       onChangeErrorDay("This field is required");
+      isValidInput = false;
     } else if (day < 1 || day > 31) {
       onChangeErrorDay("Must be a valid day");
+      isValidInput = false;
     } else {
       onChangeErrorDay("");
     }
@@ -36,8 +40,10 @@ function DateInput({
     // Validation for month input
     if (!month) {
       onChangeErrorMonth("Month is required");
+      isValidInput = false;
     } else if (month < 1 || month > 12) {
       onChangeErrorMonth("Must be a valid month");
+      isValidInput = false;
     } else {
       onChangeErrorMonth("");
     }
@@ -45,40 +51,49 @@ function DateInput({
     // Validation for year input
     if (!year) {
       onChangeErrorYear("Year is required");
+      isValidInput = false;
     } else if (year < 1900 || year > 2024) {
       onChangeErrorYear("Must be a valid year");
+      isValidInput = false;
     } else {
       onChangeErrorYear("");
     }
 
-    const dateString = `${year}-${month.toString().padStart(2, "0")}-${day
-      .toString()
-      .padStart(2, "0")}`;
-    const isValidDate = moment(dateString, "YYYY-MM-DD", true).isValid();
-    const dateInMilliseconds = new Date(dateString).getTime();
-    const dateInFuture = dateInMilliseconds > Date.now();
+    onChangeErrorDate("")
 
-    if (!isValidDate || dateInFuture) {
-      onChangeErrorDate("Invalid date");
-    } else {
-      onChangeErrorDate("");
+    if (isValidInput) {
+      console.log(errorDate)
+      const dateString = `${year}-${month.toString().padStart(2, "0")}-${day
+        .toString()
+        .padStart(2, "0")}`;
+      const isValidDate = moment(dateString, "YYYY-MM-DD", true).isValid();
+      const dateInMilliseconds = new Date(dateString).getTime();
+      const dateInFuture = dateInMilliseconds > Date.now();
+  
+      if (!isValidDate || dateInFuture) {
+        onChangeErrorDate("Invalid date");
+      } else {
+        onChangeErrorDate("");
+      }
+  
+      onChangeCheckValid(
+        day >= 1 &&
+          day <= 31 &&
+          month >= 1 &&
+          month <= 12 &&
+          year >= 1900 &&
+          year <= 2024 &&
+          isValidDate &&
+          !dateInFuture
+      );
+  
+      // Call the handleCal function if all inputs are valid
+      if (checkValid) {
+        handleCal(day, month, year);
+      }
     }
 
-    onChangeCheckValid(
-      day >= 1 &&
-        day <= 31 &&
-        month >= 1 &&
-        month <= 12 &&
-        year >= 1900 &&
-        year <= 2024 &&
-        isValidDate &&
-        !dateInFuture
-    );
-
-    // Call the handleCal function if all inputs are valid
-    if (checkValid) {
-      handleCal(day, month, year);
-    }
+    
   };
 
   return (
