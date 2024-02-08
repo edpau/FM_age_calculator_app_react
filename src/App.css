@@ -45,6 +45,7 @@ input:invalid {
 
 .App{
   background-color: var(--white);
+  width: 60vw;
   max-width: 400px;
   margin: 80px;
   padding: 40px 20px;
@@ -59,8 +60,9 @@ input:invalid {
 label {
   display: flex;
   flex-direction: column;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
   color: var(--smokeyGrey);
+  line-height: 1.5rem;
 }
 
 input{
@@ -100,17 +102,13 @@ button {
   border: none;
 }
 
-.calButton{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin: 1.5rem;
-}
+
 
 .calButtonContainer {
   display: flex;
   justify-content: center;
-  position: relative;
+  position: relative;  
+  margin: 1.5rem 0rem;
 }
 
 .calButtonContainer::before {
@@ -135,8 +133,34 @@ button {
 .dateDisplay p{
   font-size: 2.7rem;
   line-height: 3rem;
+  font-weight: 800;
 }
 
 .purpleWord {
   color: var(--purple);
+}
+
+@media (min-width: 650px) {
+  .App{
+   /* min-width: 500px; */
+   max-width: 500px;
+  }
+
+  .calButtonContainer{
+    justify-content: end;
+    margin: 0.4rem 0rem;
+  }
+
+  input {
+    width: 5.5rem;
+    height: 2.8rem;
+    font-size: 1.2rem;
+  }
+
+  .dateDisplay p{
+    font-size: 3.5rem;
+    line-height: 3.8rem;
+  }
+
+
 }
