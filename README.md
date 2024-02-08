@@ -68,7 +68,7 @@ Users should be able to:
 
 ### Useful resources
 
-- [Resource 1](https://codepen.io/BhupinderS/pen/qBEmNXm) - This helped me for age calculate logic.
+- [BhupinderS CodePen](https://codepen.io/BhupinderS/pen/qBEmNXm) - This helped me for age calculate logic.
 
 
 ## Author
