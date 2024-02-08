@@ -57,24 +57,34 @@ input:invalid {
   flex-flow: column nowrap;
 }
 
-.label {
+.label, .errorLabel  {
   display: flex;
   flex-flow: column nowrap;
   font-size: 0.6rem;
-  color: var(--smokeyGrey);
   line-height: 1.5rem;
+}
+
+.label {
+  color: var(--smokeyGrey);
 }
 
 .errorLabel {
-  display: flex;
-  flex-flow: column nowrap;
-  font-size: 0.6rem;
   color: var(--lightRed);
-  line-height: 1.5rem;
+}
+
+/* clear input default */
+/* For Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+/* For Chrome, Safari, Edge */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 input{
-  /* all: unset; */
   width: 5rem;
   height: 2.5rem;
   border-radius: 6px;
@@ -82,19 +92,6 @@ input{
   padding-left: 0.5rem;
   font-family: "Poppins", sans-serif;
   border: 1px solid var(--lightGrey);
- 
-}
-
-/* For Firefox */
-input[type='number'] {
-  -moz-appearance: textfield;
-}
-
-/* For Chrome, Safari, Edge */
-input[type='number']::-webkit-inner-spin-button,
-input[type='number']::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
 }
 
 input:focus {
@@ -124,7 +121,7 @@ button {
   border: none;
 }
 
-
+/* line behind button */
 
 .calButtonContainer {
   display: flex;
@@ -132,7 +129,6 @@ button {
   position: relative;  
   margin: 1.5rem 0rem;
 }
-
 .calButtonContainer::before {
   content: '';
   position: absolute;
@@ -141,13 +137,12 @@ button {
   top: 50%;
   border-top: 1px solid var(--lightGrey);
 }
-
 .calButton {
   z-index: 1;
-  background: white; /* Or whatever the background color of your page is */
-  /* Other button styles... */
+  background: var(--white); 
 }
 
+/* hide original submit button */
 #cal{
   display: none;
 }
@@ -184,6 +179,4 @@ button {
     font-size: 3.5rem;
     line-height: 3.8rem;
   }
-
-
 }
