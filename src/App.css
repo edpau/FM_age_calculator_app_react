@@ -1,3 +1,142 @@
+:root {
+  --purple: hsl(259, 100%, 65%);
+  --lightRed: hsl(0, 100%, 67%);
+  --white: hsl(0, 0%, 100%);
+  --offWhite: hsl(0, 0%, 94%);
+  --lightGrey: hsl(0, 0%, 86%);
+  --smokeyGrey: hsl(0, 1%, 44%);
+  --offBlack: hsl(0, 0%, 8%);
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  color: var(--offBlack);
+  background-color: var(--offWhite);
+  height: 100vh;
+  width: 100vw;
+  display: grid;
+  place-items: start center;
+}
+
+img {
+  width: 100%;
+  max-width: 100%;
+}
+
 input:invalid {
-    border: 2px dashed red;
-  }
+  border: 2px dashed red;
+}
+
+.App{
+  background-color: var(--white);
+  max-width: 400px;
+  margin: 80px;
+  padding: 40px 20px;
+  border-radius: 20px 20px 90px 20px;
+}
+
+.form{
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.7rem;
+  color: var(--smokeyGrey);
+}
+
+input{
+  /* all: unset; */
+  width: 4rem;
+  height: 2.5rem;
+  border-radius: 6px;
+  border-color: var(--lightGrey);
+  padding-left: 0.5rem;
+  font-family: "Poppins", sans-serif;
+  border: 1px solid var(--lightGrey);
+ 
+}
+
+/* For Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
+}
+
+/* For Chrome, Safari, Edge */
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.dateInput {
+  display: flex;
+  gap: 1rem;
+}
+
+button {
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  background-color: var(--purple);
+  border: none;
+}
+
+.calButton{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 1.5rem;
+}
+
+.calButtonContainer {
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+
+.calButtonContainer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  border-top: 1px solid var(--lightGrey);
+}
+
+.calButton {
+  z-index: 1;
+  background: white; /* Or whatever the background color of your page is */
+  /* Other button styles... */
+}
+
+#cal{
+  display: none;
+}
+
+.dateDisplay p{
+  font-size: 2.7rem;
+  line-height: 3rem;
+}
+
+.purpleWord {
+  color: var(--purple);
+}
