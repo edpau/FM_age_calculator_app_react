@@ -121,6 +121,15 @@ button {
   border: none;
 }
 
+button:hover{
+  background-color: var(--offBlack);
+  cursor: pointer;
+}
+
+button:active {
+  background-color: var(--lightGrey);
+}
+
 /* line behind button */
 
 .calButtonContainer {
