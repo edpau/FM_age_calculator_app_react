@@ -57,17 +57,25 @@ input:invalid {
   flex-flow: column nowrap;
 }
 
-label {
+.label {
   display: flex;
-  flex-direction: column;
+  flex-flow: column nowrap;
   font-size: 0.6rem;
   color: var(--smokeyGrey);
   line-height: 1.5rem;
 }
 
+.errorLabel {
+  display: flex;
+  flex-flow: column nowrap;
+  font-size: 0.6rem;
+  color: var(--lightRed);
+  line-height: 1.5rem;
+}
+
 input{
   /* all: unset; */
-  width: 4rem;
+  width: 5rem;
   height: 2.5rem;
   border-radius: 6px;
   border-color: var(--lightGrey);
@@ -87,6 +95,20 @@ input[type='number']::-webkit-inner-spin-button,
 input[type='number']::-webkit-outer-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+input:focus {
+  outline-color: var(--purple);
+}
+
+.inputError {
+  border-color: var(--lightRed);
+}
+
+.errorMessage {
+  font-size: 0.45rem;
+  color: var(--lightRed);
+  white-space: nowrap;
 }
 
 .dateInput {
@@ -144,11 +166,12 @@ button {
   .App{
    /* min-width: 500px; */
    max-width: 500px;
+   padding: 25px 35px;
   }
 
   .calButtonContainer{
     justify-content: end;
-    margin: 0.4rem 0rem;
+    margin: 0.1rem 0rem;
   }
 
   input {
