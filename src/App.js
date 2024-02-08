@@ -59,23 +59,25 @@ function DateInput({
       onChangeErrorYear("");
     }
 
-    onChangeErrorDate("")
-
+    // reset errorDate from previous entry
+    onChangeErrorDate("");
+    
+    // if individual input not pass, no date test and age calculation 
     if (isValidInput) {
-      console.log(errorDate)
+      console.log(errorDate);
       const dateString = `${year}-${month.toString().padStart(2, "0")}-${day
         .toString()
         .padStart(2, "0")}`;
       const isValidDate = moment(dateString, "YYYY-MM-DD", true).isValid();
       const dateInMilliseconds = new Date(dateString).getTime();
       const dateInFuture = dateInMilliseconds > Date.now();
-  
+
       if (!isValidDate || dateInFuture) {
         onChangeErrorDate("Invalid date");
       } else {
         onChangeErrorDate("");
       }
-  
+
       onChangeCheckValid(
         day >= 1 &&
           day <= 31 &&
@@ -86,23 +88,21 @@ function DateInput({
           isValidDate &&
           !dateInFuture
       );
-  
+
       // Call the handleCal function if all inputs are valid
       if (checkValid) {
         handleCal(day, month, year);
       }
     }
-
-    
   };
 
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="dateInput">
-        <label className={errorDay||errorDate ? "errorLabel" : "label"}>
+        <label className={errorDay || errorDate ? "errorLabel" : "label"}>
           DAY
           <input
-          className={errorDay||errorDate ? "inputError" : " "}
+            className={errorDay || errorDate ? "inputError" : " "}
             type="number"
             placeholder="DD"
             value={day}
@@ -115,10 +115,10 @@ function DateInput({
             <span className="errorMessage">{errorDate}</span>
           )}
         </label>
-        <label className={errorMonth||errorDate ? "errorLabel" : "label"}>
+        <label className={errorMonth || errorDate ? "errorLabel" : "label"}>
           MONTH
           <input
-          className= {errorMonth||errorDate ? "inputError" : ""}
+            className={errorMonth || errorDate ? "inputError" : ""}
             type="number"
             placeholder="MM"
             value={month}
@@ -126,10 +126,10 @@ function DateInput({
           />
           {errorMonth && <span className="errorMessage">{errorMonth}</span>}
         </label>
-        <label className={errorYear||errorDate ? "errorLabel" : "label"}>
+        <label className={errorYear || errorDate ? "errorLabel" : "label"}>
           YEAR
           <input
-          className= {errorYear||errorDate ? "inputError" : ""}
+            className={errorYear || errorDate ? "inputError" : ""}
             type="number"
             placeholder="YYYY"
             value={year}
