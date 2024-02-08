@@ -1,13 +1,6 @@
 import { useEffect, useState } from "react";
 import moment from "moment";
-
-function DisplayAge() {
-  return (
-    <div>
-      <p>Date</p>
-    </div>
-  );
-}
+import "./App.css";
 
 function DateInput({
   day,
@@ -26,7 +19,7 @@ function DateInput({
   errorDate,
   onChangeErrorDate,
   checkValid,
-  onChangeCheckValid
+  onChangeCheckValid,
 }) {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -71,15 +64,17 @@ function DateInput({
       onChangeErrorDate("");
     }
 
-    onChangeCheckValid( day >= 1 &&
-      day <= 31 &&
-      month >= 1 &&
-      month <= 12 &&
-      year >= 1900 &&
-      year <= 2024 &&
-      isValidDate &&
-      !dateInFuture) 
-     
+    onChangeCheckValid(
+      day >= 1 &&
+        day <= 31 &&
+        month >= 1 &&
+        month <= 12 &&
+        year >= 1900 &&
+        year <= 2024 &&
+        isValidDate &&
+        !dateInFuture
+    );
+
     // Call the handleCal function if all inputs are valid
     if (checkValid) {
       handleCal(day, month, year);
@@ -88,7 +83,7 @@ function DateInput({
 
   return (
     <form onSubmit={handleSubmit} className="form">
-      <div>
+      <div className="dateInput">
         <label>
           DAY
           <input
@@ -125,7 +120,23 @@ function DateInput({
           {errorYear && <span>{errorYear}</span>}
         </label>
       </div>
-      <input type="submit" className="button" value="Cal" />
+      <div className="calButtonContainer">
+        <label className="calButton">
+          <button>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="22"
+              height="20"
+              viewBox="0 0 46 44"
+            >
+              <g fill="none" stroke="white" strokeWidth="2">
+                <path d="M1 22.019C8.333 21.686 23 25.616 23 44M23 44V0M45 22.019C37.667 21.686 23 25.616 23 44" />
+              </g>
+            </svg>
+          </button>
+          <input id="cal" type="submit" className="button" value="Cal" />
+        </label>
+      </div>
     </form>
   );
 }
@@ -134,7 +145,6 @@ function AgeCalCard() {
   const [day, setDay] = useState(24);
   const [month, setMonth] = useState(9);
   const [year, setYear] = useState(1984);
-
 
   const [age, setAge] = useState({
     years: 0,
@@ -176,16 +186,14 @@ function AgeCalCard() {
     setAge({ years, months, days });
   };
 
-  const [checkValid, setCheckValid] = useState(true)
+  const [checkValid, setCheckValid] = useState(true);
 
   useEffect(() => {
     calculateAge(day, month, year);
   }, []);
 
-
-
   return (
-    <div>
+    <div className="dateDisplay">
       <DateInput
         day={day}
         onChangeDay={setDay}
@@ -202,18 +210,34 @@ function AgeCalCard() {
         onChangeErrorYear={setErrorYear}
         errorDate={errorDate}
         onChangeErrorDate={setErrorDate}
-        checkValid= {checkValid}
-        onChangeCheckValid = {setCheckValid}
+        checkValid={checkValid}
+        onChangeCheckValid={setCheckValid}
       />
-      {
-        checkValid ? <p>
-        {age.years}years{age.months}months{age.days}days
-      </p> : <p>
-        -- years -- months --days
-      </p>
-
-      }
-      
+      {checkValid ? (
+        <>
+          <p>
+            <span className="purpleWord">{age.years}</span> years
+          </p>
+          <p>
+            <span className="purpleWord">{age.months} </span>months
+          </p>
+          <p>
+            <span className="purpleWord">{age.days}</span> days
+          </p>
+        </>
+      ) : (
+        <>
+          <p>
+            <span className="purpleWord">--</span> years
+          </p>
+          <p>
+            <span className="purpleWord">--</span> months
+          </p>
+          <p>
+            <span className="purpleWord">--</span> days
+          </p>
+        </>
+      )}
     </div>
   );
 }
