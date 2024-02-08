@@ -84,9 +84,10 @@ function DateInput({
   return (
     <form onSubmit={handleSubmit} className="form">
       <div className="dateInput">
-        <label>
+        <label className={errorDay||errorDate ? "errorLabel" : "label"}>
           DAY
           <input
+          className={errorDay||errorDate ? "inputError" : " "}
             type="number"
             placeholder="DD"
             value={day}
@@ -94,30 +95,32 @@ function DateInput({
               onChangeDay(e.target.value);
             }}
           />
-          {errorDay && <span>{errorDay}</span>}
+          {errorDay && <span className="errorMessage">{errorDay}</span>}
           {!errorDay && !errorMonth && !errorYear && errorDate && (
-            <span>{errorDate}</span>
+            <span className="errorMessage">{errorDate}</span>
           )}
         </label>
-        <label>
+        <label className={errorMonth||errorDate ? "errorLabel" : "label"}>
           MONTH
           <input
+          className= {errorMonth||errorDate ? "inputError" : ""}
             type="number"
             placeholder="MM"
             value={month}
             onChange={(e) => onChangeMonth(e.target.value)}
           />
-          {errorMonth && <span>{errorMonth}</span>}
+          {errorMonth && <span className="errorMessage">{errorMonth}</span>}
         </label>
-        <label>
+        <label className={errorYear||errorDate ? "errorLabel" : "label"}>
           YEAR
           <input
+          className= {errorYear||errorDate ? "inputError" : ""}
             type="number"
             placeholder="YYYY"
             value={year}
             onChange={(e) => onChangeYear(e.target.value)}
           />
-          {errorYear && <span>{errorYear}</span>}
+          {errorYear && <span className="errorMessage">{errorYear}</span>}
         </label>
       </div>
       <div className="calButtonContainer">
