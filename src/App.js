@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import moment from "moment";
 import "./App.css";
 
+import CountUp from 'react-countup';
+
 function DateInput({
   day,
   onChangeDay,
@@ -234,13 +236,16 @@ function AgeCalCard() {
       {checkValid ? (
         <>
           <p>
-            <span className="purpleWord">{age.years}</span> years
+            <span className="purpleWord"><CountUp end={age.years} /></span> years
+            
           </p>
           <p>
-            <span className="purpleWord">{age.months} </span>months
+            <span className="purpleWord"><CountUp end={age.months} /></span>months
+            
           </p>
           <p>
-            <span className="purpleWord">{age.days}</span> days
+            <span className="purpleWord"><CountUp end={age.days} /></span> days
+            
           </p>
         </>
       ) : (
